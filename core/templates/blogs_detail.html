@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h2 class="title">
+        {{object.title}}
+    </h2>
+    <h4 class="author">
+        {{object.author}}
+    </h4>
+    {% if object.image %}
+    {% else %}
+    <div style="width: 80%; height: 400px; margin: auto; background-color: gray;">
+
+    </div>
+    {% endif%}
+    <div>
+        <p>{{object.content}}</p>
+    </div>
+    <div class="comments">
+
+    </div>
+    <div class="create-comments">
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+    <!-- News With Sidebar Start -->
+    <div class="container-fluid">
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title">
+                                <h4 class="m-0 text-uppercase font-weight-bold">Latest Blogs</h4>
+                            </div>
+                        </div>
+                        {% for blog in object_list %}
+                        <div class="col-lg-6">
+                            <div class="position-relative mb-3">
+                                <div class="bg-white border border-top-0 p-4">
+                                    <div class="mb-2">
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                            href="">{{blog.category.first}}</a>
+                                        <a class="text-body" href=""><small>{{blog.date_created}}</small></a>
+                                    </div>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{% url 'blog_details' blog.id %}">
+                                        {{blog.title|truncatechars:20}}</a>
+                                    <p class="m-0">
+                                        {{blog.title|truncatechars:50}}
+                                    </p>
+                                </div>
+                                <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
+                                    <div class="d-flex align-items-center">
+                                        <small>{{blog.author}}</small>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <small class="ml-3"><i class="far fa-eye mr-2"></i>{{blog.views.count}}</small>
+                                        <small class="ml-3"><i class="far fa-comment mr-2"></i>{{blog.comment_set.count}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <!-- Tags Start -->
+                    <div class="mb-3">
+                        <div class="section-title mb-0">
+                            <h4 class="m-0 text-uppercase font-weight-bold">Categories</h4>
+                        </div>
+                        <div class="bg-white border border-top-0 p-3">
+                            <div class="d-flex flex-wrap m-n1">
+                                {% for category in categories %}
+                                <a href="" class="btn btn-sm btn-outline-secondary m-1">{{category.name}}</a>
+                                {% endfor%}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tags End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- News With Sidebar End -->
+
+{% endblock %}
